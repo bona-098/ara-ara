@@ -3,10 +3,10 @@
     <div class="container-fluid pt-4 px-4">
         <div class="row g-4">
             <div class="col-12">
-            <div class="bg-light rounded h-100 p-4">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahKaryawanModal">
+                <div class="bg-light rounded h-100 p-4">
+                    {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#tambahKaryawanModal">
                         + Tambah Karyawan
-                    </button>
+                    </button> --}}
 
                     <!-- Modal -->
                     <div class="modal fade" id="tambahKaryawanModal" tabindex="-1" role="dialog"
@@ -71,43 +71,27 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First Name</th>
-                                        <th scope="col">Last Name</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Country</th>
+                                        <th scope="col">NRP Baru</th>
+                                        <th scope="col">Nama</th>
+                                        <th scope="col">User (terupdate)</th>
+                                        <th scope="col">Area Kerja</th>
+                                        <th scope="col">Job Position</th>
                                         <th scope="col">ZIP</th>
-                                        <th scope="col">Status</th>
+                                        <th scope="col">Lama Kerja</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>John</td>
-                                        <td>Doe</td>
-                                        <td>jhon@email.com</td>
-                                        <td>USA</td>
-                                        <td>123</td>
-                                        <td>Member</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>mark@email.com</td>
-                                        <td>UK</td>
-                                        <td>456</td>
-                                        <td>Member</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>jacob@email.com</td>
-                                        <td>AU</td>
-                                        <td>789</td>
-                                        <td>Member</td>
-                                    </tr>
+                                    @foreach ($karya as $k)
+                                        <tr>
+                                            <th scope="row">{{ $k->nrp_baru }}</th>
+                                            <td>{{ $k->nama }}</td>
+                                            <td>{{ $k->nrp_baru }}</td>
+                                            <td>{{ $k->user_terupdate }}</td>
+                                            <td>{{ $k->area_kerja }}</td>
+                                            <td>{{ $k->job_position_after }}</td>
+                                            <td>{{ $k->lama_kerja }}</td>
+                                        </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

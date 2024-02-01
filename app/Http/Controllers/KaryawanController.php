@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\karyawan;
 
 class KaryawanController extends Controller
-{
+{ 
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('karyawan.index');
+        $karya = karyawan::get();
+        return view('karyawan.index', compact('karya'));
     }
 
     /**
