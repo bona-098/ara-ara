@@ -58,7 +58,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="{{ route('dashboard') }}" class="navbar-brand mx-10 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Kamaju Bendili bangetsih kamu</h3>
+                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>Kamaju Bendili</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -85,14 +85,17 @@
                         </div> --}}
                     <a href="{{ route('dashboard') }}" class="nav-item nav-link active"><i
                             class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                    <a href="{{ route('karyawan') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Data
+                    <a href="{{ route('karyawan.index') }}" class="nav-item nav-link"><i
+                            class="fa fa-table me-2"></i>Data
                         Karyawan</a>
-                    <a href="{{ route('pengumuman') }}" class="nav-item nav-link"><i
+                    <a href="{{ route('pengumuman.index') }}" class="nav-item nav-link"><i
                             class="fa fa-table me-2"></i>Pengumuman</a>
-                    <a href="{{ route('absensi') }}" class="nav-item nav-link"><i
+                    <a href="{{ route('absen.index') }}" class="nav-item nav-link"><i
                             class="fa fa-table me-2"></i>Absensi</a>
-                    <a href="{{ route('cuti') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Cuti</a>
-                    <a href="{{ route('lembur') }}" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Lembur</a>
+                    <a href="{{ route('cuti.index') }}" class="nav-item nav-link"><i
+                            class="fa fa-table me-2"></i>Cuti</a>
+                    <a href="{{ route('lembur.index') }}" class="nav-item nav-link"><i
+                            class="fa fa-table me-2"></i>Lembur</a>
                     {{-- <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Widgets</a>
                     <a href="form.html" class="nav-item nav-link"><i class="fa fa-keyboard me-2"></i>Forms</a>
                     <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
@@ -126,10 +129,10 @@
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-envelope me-lg-2"></i>
                             <span class="d-none d-lg-inline-flex">Message</span>
-                        </a>
+                        </a> --}}
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <div class="d-flex align-items-center">
@@ -168,10 +171,10 @@
                         </div>
                     </div>
                     <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                        {{-- <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
                             <span class="d-none d-lg-inline-flex">Notificatin</span>
-                        </a>
+                        </a> --}}
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
                             <a href="#" class="dropdown-item">
                                 <h6 class="fw-normal mb-0">Profile updated</h6>

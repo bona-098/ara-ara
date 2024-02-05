@@ -8,6 +8,9 @@ use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\CutiController;
 use App\Http\Controllers\LemburController;
 use App\Http\Controllers\KaryawanController;
+use App\Models\cuti;
+use App\Models\karyawan;
+use App\Models\lembur;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,8 +25,13 @@ use App\Http\Controllers\KaryawanController;
 
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-Route::get('/pengumuman', [PengumumanController::class, 'index'])->name('pengumuman');
-Route::get('/absen', [AbsensiController::class, 'index'])->name('absensi');
-Route::get('/cuti', [CutiController::class, 'index'])->name('cuti');
-Route::get('/lembur', [LemburController::class, 'index'])->name('lembur');
-Route::get('/karyawan', [KaryawanController::class, 'index'])->name('karyawan');
+// pengumuman
+Route::resource('/pengumuman', PengumumanController::class);
+// absen
+Route::resource('/absen', AbsensiController::class);
+// cuti
+Route::resource('/cuti', cutiController::class);
+// lembur
+Route::resource('/lembur', lemburController::class);
+// karyawan
+Route::resource('/karyawan', karyawanController::class);

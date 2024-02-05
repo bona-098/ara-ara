@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\pengumuman;
 
 class PengumumanController extends Controller
 {
@@ -11,7 +12,8 @@ class PengumumanController extends Controller
      */
     public function index()
     {
-        return view('pengumuman.index');
+        $peng = pengumuman::get();
+        return view('pengumuman.index', compact('peng'));
     }
 
     /**
@@ -27,8 +29,26 @@ class PengumumanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'foto' => 'file|image|mimes:jpg,png,jpeg,gif|max:50000',
+        ]);
+
+        $newnamefoto = null;
+
+        if ($request->hasFile('foto')) {
+            $newnamefoto = $request->judul . '-' . date('His') . '.' . $request->file('foto')->extension();
+            $request->file('foto')->move(public_path('pengumumin/foto'), $newnamefoto);
+        }
+
+        $peng = Pengumuman::create([
+            'judul' => $request->judul,
+            'deskripsi' => $request->deskripsi,
+            'foto' => $newnamefoto,
+        ]);
+
+        return redirect()->back();
     }
+
 
     /**
      * Display the specified resource.
@@ -59,6 +79,8 @@ class PengumumanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $peng = Pengumuman::findOrFail($id);
+        $peng->delete();
+        return redirect()->back();
     }
 }
