@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('lemburs', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('karyawan_id')->constrained('karyawans');
             $table->date('tanggal');
             $table->string('hari');
             $table->string('roster');

@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class lembur extends Model
 {
     use HasFactory;
-    public $table = 'lembur';
+    public $table = 'lemburs';
     protected $fillable = [
+        'karyawan_id',
         'tanggal',
         'hari',
         'roster',
@@ -20,4 +21,10 @@ class lembur extends Model
         'jumlah',
         'total_lembur'
     ];
+
+    // Relasi many-to-one dengan model Karyawan
+    public function karyawans()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
+    }
 }

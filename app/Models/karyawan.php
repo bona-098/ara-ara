@@ -70,4 +70,9 @@ class karyawan extends Model
         'tanggal_resign',
         'mess_luar_mess',
     ];
+
+    public function lemburs()
+    {
+        return $this->hasMany(Lembur::class, 'karyawan_id');
+    }
 }
