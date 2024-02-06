@@ -13,6 +13,15 @@ return new class extends Migration
     {
         Schema::create('lemburs', function (Blueprint $table) {
             $table->id();
+            $table->date('tanggal');
+            $table->string('hari');
+            $table->string('roster');
+            $table->text('keterangan')->nullable();
+            $table->text('uraian')->nullable();
+            $table->time('jam_dari');
+            $table->time('jam_sampai');
+            $table->integer('jumlah');
+            $table->integer('total_lembur');
             $table->timestamps();
         });
     }
