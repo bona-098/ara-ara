@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 use App\Models\pengumuman;
 
@@ -46,7 +47,9 @@ class PengumumanController extends Controller
             'foto' => $newnamefoto,
         ]);
 
-        return redirect()->back();
+        Session::flash('success', 'Data berhasil disimpan.');
+
+        return redirect()->route('pengumuman.index');
     }
 
 

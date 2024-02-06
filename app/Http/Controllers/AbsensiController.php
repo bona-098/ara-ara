@@ -11,8 +11,59 @@ class AbsensiController extends Controller
      */
     public function index()
     {
-        return view('absensi.index');
+        $absensi = [];
+        $employees = ['Japersun',];
+
+        for ($i = 1; $i <= 31; $i++) {
+            $tanggal = "2024-01-" . sprintf("%02d", $i);
+            $absensi[$tanggal] = [];
+
+            foreach ($employees as $employee) {
+                $status = ['Hadir', 'Absen', 'Izin', 'Sakit'][array_rand(['Hadir', 'Absen', 'Izin', 'Sakit'])];
+                $jam_masuk = $this->generateCheckInTime(); // Generate check-in time (for example purposes)
+                $jam_keluar = $this->generateCheckOutTime(); // Generate check-out time (for example purposes)
+
+                // Determine if the employee is late
+                $late = $this->isLate($jam_masuk);
+
+                $absensi[$tanggal][$employee] = [
+                    'status' => $status,
+                    'jam_masuk' => $jam_masuk,
+                    'jam_keluar' => $jam_keluar,
+                    'late' => $late,
+                ];
+            }
+        }
+
+        $dates = [];
+        for ($i = 1; $i <= 31; $i++) {
+            $dates[] = date('Y-m-d', strtotime("2024-01-$i"));
+        }
+        return view('absensi.index', compact('dates', 'absensi', 'employees'));
     }
+
+    private function generateCheckInTime()
+    {
+        // Generate a random check-in time for demonstration purposes
+        return date('H:i', rand(strtotime('08:00'), strtotime('10:00')));
+    }
+
+    private function generateCheckOutTime()
+    {
+        // Generate a random check-out time for demonstration purposes
+        return date('H:i', rand(strtotime('16:00'), strtotime('18:00')));
+    }
+
+    private function isLate($jam_masuk)
+    {
+        // Compare check-in time with the threshold (e.g., 8:00 AM)
+        return strtotime($jam_masuk) > strtotime('08:00');
+    }
+
+
+
+
+
 
     /**
      * Show the form for creating a new resource.

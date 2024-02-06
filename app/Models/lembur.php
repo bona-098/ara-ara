@@ -23,7 +23,7 @@ class lembur extends Model
     ];
 
     // Relasi many-to-one dengan model Karyawan
-    public function karyawans()
+    public function karyawan()
     {
         return $this->belongsTo(Karyawan::class, 'karyawan_id');
     }

@@ -35,6 +35,11 @@
                                             <input class="form-control" type="file" id="formFile" name="foto">
                                         </div>
                                         <div class="modal-footer">
+                                            @if (Session::has('success'))
+                                                <div class="alert alert-success">
+                                                    {{ Session::get('success') }}
+                                                </div>
+                                            @endif
                                             <button type="button" class="btn btn-secondary"
                                                 data-dismiss="modal">Tutup</button>
                                             <button type="submit" class="btn btn-primary"
@@ -118,7 +123,7 @@
         </div>
     </div>
     <!-- Script JavaScript -->
-    <script>
+    {{-- <script>
         document.addEventListener("DOMContentLoaded", function() {
             // Tangkap elemen formulir dan tombol simpan
             var formPengumuman = document.getElementById('formtambahPengumuman');
@@ -146,5 +151,5 @@
                 });
             });
         });
-    </script>
+    </script> --}}
 @endsection

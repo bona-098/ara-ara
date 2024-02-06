@@ -1,59 +1,37 @@
 @extends('layouts.sidebar')
 @section('content')
     <div class="container-fluid pt-4 px-4">
-        <div class="row g-4">
-            <div class="bg-light rounded h-100 p-4">
-                <div class="col-12">
-                    <div>
-                        <h6 class="ml">+ Tambah Karyawan</h6>
-                    </div>
-                    <h6 class="mb-4">Data Karyawan</h6>
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">First Name</th>
-                                    <th scope="col">Last Name</th>
-                                    <th scope="col">Email</th>
-                                    <th scope="col">Country</th>
-                                    <th scope="col">ZIP</th>
-                                    <th scope="col">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>John</td>
-                                    <td>Doe</td>
-                                    <td>jhon@email.com</td>
-                                    <td>USA</td>
-                                    <td>123</td>
-                                    <td>Hadir</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>mark@email.com</td>
-                                    <td>UK</td>
-                                    <td>456</td>
-                                    <td>Sakit</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>jacob@email.com</td>
-                                    <td>AU</td>
-                                    <td>789</td>
-                                    <td>Cuti</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
+        <h2>Rekap Absensi Bulanan</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Tanggal</th>
+                        @foreach ($employees as $employee)
+                            <th>Nama</th>
+                            <th>Absen</th>
+                            <th>Masuk</th>
+                            <th>Keluar</th>
+                        @endforeach
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($dates as $date)
+                        <tr>
+                            <td>{{ $date }}</td>
+                            @foreach ($employees as $employee)
+                                <td>{{ $employee }}</td>
+                                <td>{{ $absensi[$date][$employee]['status'] }}</td>
+                                <td
+                                    style="background-color: {{ $absensi[$date][$employee]['late'] ? 'red' : 'transparent' }}">
+                                    {{ $absensi[$date][$employee]['jam_masuk'] }}
+                                </td>
+                                <td>{{ $absensi[$date][$employee]['jam_keluar'] }}</td>
+                            @endforeach
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 @endsection

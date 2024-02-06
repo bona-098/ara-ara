@@ -14,9 +14,11 @@ class LemburController extends Controller
     public function index()
     {
         $lks = lembur::with('karyawan')->get();
-        dd($lks);
-        return view('lembur.index')->with('lks', $lks);
+        $monyet = karyawan::all();
+        // dd($monyet);
+        return view('lembur.index')->with('lks', $lks)->with('monyet', $monyet);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -25,6 +27,7 @@ class LemburController extends Controller
     {
         //
     }
+
 
     /**
      * Store a newly created resource in storage.

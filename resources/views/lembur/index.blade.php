@@ -27,9 +27,8 @@
                                             <label for="karyawan_id" class="form-label">Nama Karyawan</label>
                                             <select class="form-control" id="karyawan_id" name="karyawan_id" required>
                                                 <option value="" selected disabled>Pilih Karyawan</option>
-                                                @foreach ($lks as $l)
-                                                    <option value="{{ $l->karyawan->id }}">{{ $l->karyawan->nrp_baru }}
-                                                    </option>
+                                                @foreach ($monyet as $m)
+                                                    <option value="{{ $m->id }}">{{ $m->nrp_baru }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -107,7 +106,7 @@
                                 <tbody>
                                     @foreach ($lks as $k)
                                         <tr>
-                                            <th scope="row">{{ $k->karyawan->nama }}</th>
+                                            <th scope="row">{{ $k->karyawan->nrp_baru }}</th>
                                             <td>{{ $k->tanggal }}</td>
                                             <td>{{ $k->hari }}</td>
                                             <td>{{ $k->roster }}</td>

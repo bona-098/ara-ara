@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('absens', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('karyawan_id');
+            $table->date('tanggal');
+            $table->time('jam_masuk')->nullable();
+            $table->time('jam_keluar')->nullable();
+            $table->enum('status', ['hadir', 'absen', 'izin', 'sakit'])->default('absen');
             $table->timestamps();
+            $table->foreign('karyawan_id')->references('id')->on('karyawan')->onDelete('cascade');
         });
     }
 
