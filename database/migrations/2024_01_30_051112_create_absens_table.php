@@ -15,10 +15,8 @@ return new class extends Migration
             $table->id();
             // $table->unsignedBigInteger('karyawan_id');
             $table->foreignId('karyawan_id')->constrained('karyawans');
-            $table->foreignId('cuti_id')->nullable()->constrained('cutis')->onDelete('set null');
             $table->date('tanggal');
-            $table->enum('day', ['hadir', 'sakit', 'izin', 'off', 'training', 'alpha'])->default('alpha');
-            $table->enum('night', ['hadir', 'sakit', 'izin', 'off', 'training', 'alpha'])->default('alpha');
+            $table->enum('status', ['d', 'n', 's', 'i', 'cs', 'ct', 'cb', 'ce', 'o', 't', 'a'])->default('a');
             $table->timestamps();
             // $table->foreign('karyawan_id')->references('id')->on('karyawan')->onDelete('cascade');
         });

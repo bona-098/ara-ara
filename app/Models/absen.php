@@ -8,12 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class absen extends Model
 {
     use HasFactory;
-    public $table = 'absen';
+    public $table = 'absens';
     protected $fillable = [
         'karyawan_id',
         'tanggal',
-        'status',
-        'keterangan',
+        'status'
     ];
     public function karyawan()
     {
