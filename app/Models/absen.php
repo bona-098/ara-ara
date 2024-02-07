@@ -12,8 +12,11 @@ class absen extends Model
     protected $fillable = [
         'karyawan_id',
         'tanggal',
-        'jam_masuk',
-        'jam_keluar',
         'status',
+        'keterangan',
     ];
+    public function karyawan()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
+    }
 }

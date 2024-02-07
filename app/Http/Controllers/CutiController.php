@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\cuti;
+use App\Models\karyawan;
 
 class CutiController extends Controller
 {
@@ -11,7 +13,10 @@ class CutiController extends Controller
      */
     public function index()
     {
-        return view('cuti.index');
+        $lks = Cuti::all();
+        $ky = karyawan::all();
+        // dd($cutis);
+        return view('cuti.index', compact('lks', 'ky'));
     }
 
     /**
@@ -27,7 +32,24 @@ class CutiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'karyawan_id' => 'required'
+        ]);
+
+        $lks = Cuti::create([
+            'karyawan_id' => $request->karyawan_id,
+            'keperluan' => $request->keperluan,
+            'awal_cuti' => $request->awal_cuti,
+            'akhir_cuti' => $request->akhir_cuti,
+            'total_cuti' => $request->total_cuti,
+            'sisa_cuti' => $request->sisa_cuti,
+            'periode_cuti' => $request->periode_cuti,
+        ])->with('karyawan')->get();
+// untuk total cuti dihitung dari awal - akhir
+// sisa cuti dari total cuti dikurang jatah cuti
+// kurang jatah cuti
+
+        return redirect()->back();
     }
 
     /**

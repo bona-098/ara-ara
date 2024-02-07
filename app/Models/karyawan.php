@@ -75,4 +75,12 @@ class karyawan extends Model
     {
         return $this->hasMany(Lembur::class, 'karyawan_id');
     }
+    public function cutis()
+    {
+        return $this->hasMany(Cuti::class, 'karyawan_id');
+    }
+    public function absens()
+    {
+        return $this->hasMany(Absen::class, 'karyawan_id');
+    }
 }

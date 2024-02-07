@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('absens', function (Blueprint $table) {
+        Schema::create('cutis', function (Blueprint $table) {
             $table->id();
             // $table->unsignedBigInteger('karyawan_id');
             $table->foreignId('karyawan_id')->constrained('karyawans');
-            $table->foreignId('cuti_id')->nullable()->constrained('cutis')->onDelete('set null');
-            $table->date('tanggal');
-            $table->enum('day', ['hadir', 'sakit', 'izin', 'off', 'training', 'alpha'])->default('alpha');
-            $table->enum('night', ['hadir', 'sakit', 'izin', 'off', 'training', 'alpha'])->default('alpha');
+            $table->string('keperluan');
+            $table->date('awal_cuti');
+            $table->date('akhir_cuti');
+            $table->integer('total_cuti')->default(10); // Default 10 cuti
+            $table->string('sisa_cuti');
+            $table->enum('status', ['site', 'tahunan', 'besar', 'emergency'])->default('tahunan');
+            $table->enum('periode_cuti', ['3bulanan', 'tahunan'])->default('tahunan');
             $table->timestamps();
             // $table->foreign('karyawan_id')->references('id')->on('karyawan')->onDelete('cascade');
         });
@@ -29,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('absens');
+        Schema::dropIfExists('cutis');
     }
 };
