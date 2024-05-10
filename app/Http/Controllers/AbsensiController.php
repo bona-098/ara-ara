@@ -24,9 +24,22 @@ class AbsensiController extends Controller
             $dates[] = date('Y-m-d', strtotime("2024-02-$i"));
         }
 
-        // Pass data absen dan daftar tanggal ke view
-        return view('absensi.index', compact('absens', 'dates'));
+        // Ambil daftar status kehadiran yang unik dari semua data absen
+        $statuses = Absen::pluck('status')->unique();
+
+        // Hitung jumlah status kehadiran untuk setiap status dan setiap karyawan
+        $statusCounts = [];
+        foreach ($absens as $karyawan_id => $employeeAbsens) {
+            $statusCounts[$karyawan_id] = [];
+            foreach ($statuses as $status) {
+                $statusCounts[$karyawan_id][$status] = $employeeAbsens->where('status', $status)->count();
+            }
+        }
+
+        // Pass data absen, daftar tanggal, daftar status, dan jumlah status kehadiran ke view
+        return view('absensi.index', compact('absens', 'dates', 'statuses', 'statusCounts'));
     }
+
 
     /**
      * Show the form for creating a new resource.

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class karyawan extends Model
 {
     use HasFactory;
-
+    protected $table = 'karyawans';
     protected $fillable = [
         'nrp_baru',
         'nama',
@@ -82,5 +82,9 @@ class karyawan extends Model
     public function absens()
     {
         return $this->hasMany(Absen::class, 'karyawan_id');
+    }
+    public function bappmanpowers()
+    {
+        return $this->hasMany(Bappmanpower::class, 'karyawan_id');
     }
 }

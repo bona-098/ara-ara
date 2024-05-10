@@ -22,7 +22,6 @@ class cuti extends Model
         // absen ada cuti, jadi jika absen karena cuti ambil dari tabel cuti
     ];
 
-
     public function karyawan()
     {
         return $this->belongsTo(Karyawan::class, 'karyawan_id');

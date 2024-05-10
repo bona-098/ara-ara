@@ -11,6 +11,10 @@
                         @foreach ($dates as $date)
                             <th>{{ $date }}</th>
                         @endforeach
+                        {{-- Menampilkan semua status --}}
+                        @foreach ($statuses as $status)
+                            <th>{{ $status }}</th>
+                        @endforeach
                     </tr>
                 </thead>
                 <tbody>
@@ -30,12 +34,20 @@
                                     $absen = $employeeAbsens->firstWhere('tanggal', $date);
                                 @endphp
                                 {{-- Check if absen is found for this date --}}
-                                @if ($absen)
-                                    <td>{{ $absen->status }}</td>
-                                @else
-                                    <td></td> {{-- No absen data available for this date --}}
-                                @endif
+                                <td>{{ $absen ? $absen->status : '' }}</td>
                             @endforeach
+
+                            {{-- Loop through each status --}}
+                            @foreach ($statuses as $status)
+                                {{-- Count the number of absences with this status --}}
+                                @php
+                                    $count = $employeeAbsens->where('status', $status)->count();
+                                @endphp
+                                {{-- Display the count --}}
+                                <td>{{ $count }}</td>
+                            @endforeach
+
+
                         </tr>
                     @endforeach
                 </tbody>
